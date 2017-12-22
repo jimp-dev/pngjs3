@@ -5,3 +5,4 @@ examples/*.png
 browser\.js
 dist
 package-lock\.json
+\.nyc_output

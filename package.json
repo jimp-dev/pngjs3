@@ -45,9 +45,8 @@
     "clean:dist": "rimraf dist",
     "compile": "npm run clean:dist && babel -d dist/ lib/",
     "browserify": "browserify dist/png.js --standalone png > browser.js",
-    "coverage": "istanbul -- cover node_modules/tape/bin/tape test/*-spec.js nolarge",
-    "coverage-report": "npm run coverage && istanbul report html",
-    "coveralls": "cat ./coverage/lcov.info | coveralls",
+    "coverage": "NODE_ENV=test nyc babel-tape-runner test/*-spec.js nolarge| tap-nyc",
+    "coveralls": "nyc report --reporter=text-lcov | coveralls",
     "test": "npm run test:clean && npm run lint && babel-tape-runner test/*-spec.js | tap-dot && babel-node test/run-compare",
     "test:only": "npm run test:clean && babel-tape-runner test/*-spec.js",
     "test:only:watch": "nodemon --exec 'npm run test:only' -e js,json",
@@ -66,18 +65,30 @@
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
+    "babel-plugin-istanbul": "^4.1.5",
     "babel-preset-env": "^1.6.1",
+    "babel-register": "^6.26.0",
     "babel-tape-runner": "^2.0.1",
     "browserify": "^14.5.0",
     "buffer-equal": "1.0.0",
     "connect": "^3.6.5",
+    "coveralls": "^3.0.0",
     "eslint": "^4.13.1",
     "istanbul": "^0.4.4",
     "nodemon": "^1.13.3",
+    "nyc": "^11.4.1",
     "phantomjs-prebuilt": "^2.1.16",
     "rimraf": "^2.6.2",
     "serve-static": "^1.13.1",
     "tap-dot": "^1.0.0",
+    "tap-nyc": "^1.0.3",
     "tape": "^4.8.0"
+  },
+  "nyc": {
+    "require": [
+      "babel-register"
+    ],
+    "sourceMap": false,
+    "instrument": false
   }
 }
