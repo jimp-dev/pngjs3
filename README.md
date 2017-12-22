@@ -1,4 +1,5 @@
-[![Build Status](https://travis-ci.org/gforge/pngjs3.svg?branch=master)](https://travis-ci.org/gforge/pngjs3) [![Build status](https://ci.appveyor.com/api/projects/status/tb8418jql1trkntd/branch/master?svg=true)](https://ci.appveyor.com/project/gforge/pngjs32/branch/master) [![Coverage Status](https://coveralls.io/repos/gforge/pngjs32/badge.svg?branch=master&service=github)](https://coveralls.io/github/gforge/pngjs32?branch=master) [![npm version](https://badge.fury.io/js/pngjs.svg)](http://badge.fury.io/js/pngjs)
+[![Build Status](https://travis-ci.org/gforge/pngjs3.svg?branch=master)](https://travis-ci.org/gforge/pngjs3) [![Build status](https://ci.appveyor.com/api/projects/status/tb8418jql1trkntd/branch/master?svg=true)](https://ci.appveyor.com/project/gforge/pngjs32/branch/master) [![Coverage Status](https://coveralls.io/repos/gforge/pngjs32/badge.svg?branch=master&service=github)](https://coveralls.io/github/gforge/pngjs32?branch=master)
+[![npm version](https://badge.fury.io/js/pngjs3.svg)](http://badge.fury.io/js/pngjs3)
 
 pngjs3
 ========
