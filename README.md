@@ -1,10 +1,10 @@
 [![Build Status](https://travis-ci.org/gforge/pngjs3.svg?branch=master)](https://travis-ci.org/gforge/pngjs3) [![Build status](https://ci.appveyor.com/api/projects/status/tb8418jql1trkntd/branch/master?svg=true)](https://ci.appveyor.com/project/gforge/pngjs32/branch/master) [![Coverage Status](https://coveralls.io/repos/gforge/pngjs32/badge.svg?branch=master&service=github)](https://coveralls.io/github/gforge/pngjs32?branch=master)
 [![npm version](https://badge.fury.io/js/pngjs3.svg)](http://badge.fury.io/js/pngjs3)
+[![Greenkeeper badge](https://badges.greenkeeper.io/gforge/pngjs3.svg)](https://greenkeeper.io/)
 
 pngjs3
 ========
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/gforge/pngjs3.svg)](https://greenkeeper.io/)
 Simple PNG encoder/decoder for Node.js and browsers with no dependencies.
 
 A fork from [pngjs2](https://github.com/lukeapage/pngjs) that in
@@ -12,6 +12,10 @@ turn is based on the original [pngjs](https://github.com/niegowski/node-pngjs) w
 the following enhancements:
 
  * `skipRescale` that allows retrieval of 16-bit data if input was 16-bit
+ * `grayscaleData` for retrieving the grayscale bitmap (*note* ignores alpha channel and caches the grayscale conversion&dagger;)
+ * `propData` for retrieving the proportional values (*note* ignores alpha channel and caches the proportional conversion&dagger;)
+
+&dagger; If you manipulate the `data` property of the object directly the conversions will not be recalculated due to the cache.
 
 The pngjs2 had the follow enhancements compared to the original:
 
