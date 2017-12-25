@@ -89,7 +89,7 @@ fs.readdir(__dirname + '/in/', function(err, orgFiles) {
               fs.createWriteStream(outFileName)
                 .on('finish', function() {
                   if (fs.existsSync(outFileName)) {
-                    t.pass(`completed`);
+                    t.pass('completed');
                   }
                   else {
                     t.fail('No file created');

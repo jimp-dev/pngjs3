@@ -1,6 +1,6 @@
 #!/usr/bin/env babel-node
 import fs from 'fs';
-var PNG = require('../lib/png').PNG;
+import { PNG } from '../lib/png';
 import test from 'tape';
 import bufferEqual from 'buffer-equal';
 
@@ -26,11 +26,11 @@ test('outputs background, created from scratch', function(t) {
     }
   }
 
-  png.pack().pipe(fs.createWriteStream(__dirname + '/bg.png'))
+  png.pack().pipe(fs.createWriteStream(__dirname + '/imgs/bg.png'))
     .on('finish', function() {
 
-      var out = fs.readFileSync(__dirname + '/bg.png');
-      var ref = fs.readFileSync(__dirname + '/bg-ref.png');
+      var out = fs.readFileSync(__dirname + '/imgs/bg.png');
+      var ref = fs.readFileSync(__dirname + '/imgs/bg-ref.png');
 
       var isBufferEqual = bufferEqual(out, ref);
       t.ok(isBufferEqual, 'compares with working file ok');
