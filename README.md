@@ -95,8 +95,8 @@ import { PNG } from 'pngjs/browser';
 Example
 ==========
 ```js
-var fs = require('fs'),
-    PNG = require('pngjs').PNG;
+import fs from 'fs';
+import { PNG } from 'pngjs';
 
 fs.createReadStream('in.png')
     .pipe(new PNG({
@@ -149,7 +149,10 @@ As input any color type is accepted (grayscale, rgb, palette, grayscale with alp
 - `bgColor` - an object containing red, green, and blue values between 0 and 255
 that is used when packing a PNG if alpha is not to be included (default: 255,255,255)
 - `skipRescale` - set to true if you want to skip the rescaling to 8-bit bitmap. This is good if you wish to retain a 16-bit bitmap datastructure.
+- `initGrayscaleData` - if you want to initialize the grayscale conversion of the RGBA data for the `grayscaleData` call &dagger;.
+- `initPropData` - boolean or an object with the arguments to `initPropData` for initializing the `propData` &dagger;.
 
+&dagger; These functions are useful if you wish to do repeated manipulations to the image and as image manipulation is time consuming it is beneficial to initiate the data from start.
 
 ### Event "metadata"
 `function(metadata) { }`

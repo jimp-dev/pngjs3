@@ -75,7 +75,7 @@
     "buffer-equal": "1.0.0",
     "connect": "^3.6.5",
     "coveralls": "^3.0.0",
-    "eslint": "^4.13.1",
+    "eslint": "^4.14.0",
     "istanbul": "^0.4.4",
     "nodemon": "^1.14.3",
     "nyc": "^11.4.1",
