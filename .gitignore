@@ -3,6 +3,8 @@ node_modules
 coverage
 examples/*.png
 browser\.js
+browser\.js\.flow
 dist
 package-lock\.json
 \.nyc_output
+flow-typed/npm

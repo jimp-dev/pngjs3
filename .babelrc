@@ -1,5 +1,5 @@
 {
-  "presets": ["env"],
+  "presets": ["env", "flow"],
   "env": {
     "test": {
       "plugins": ["istanbul"]
