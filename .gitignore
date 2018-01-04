@@ -8,3 +8,4 @@ dist
 package-lock\.json
 \.nyc_output
 flow-typed/npm
+test/imgs/out_*
