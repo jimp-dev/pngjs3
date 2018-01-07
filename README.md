@@ -45,7 +45,7 @@ Known lack of support for:
 Requirements
 ============
 
-* Node.js v4 (use older v2.3.0 for 0.10/0.12/iojs support)
+* Node.js v6 pr later (older versions timeout on 2 TravisCI tests)
 
 Comparison Table
 ================
@@ -81,7 +81,13 @@ In addition we use a tolerance of 3 for 16 bit images in PhantomJS because Phant
 Installation
 ===============
 ```
-$ npm install pngjs  --save
+$ npm install pngjs3  --save
+```
+
+or with yarn
+
+```
+$ yarn add pngjs3
 ```
 
 Browser
@@ -89,14 +95,14 @@ Browser
 The package has been build with a [Browserify](browserify.org) version (`npm run browserify`) and you can use the browser version by including in your code:
 
 ```
-import { PNG } from 'pngjs/browser';
+import { PNG } from 'pngjs3/browser';
 ```
 
 Example
 ==========
 ```js
 import fs from 'fs';
-import { PNG } from 'pngjs';
+import { PNG } from 'pngjs3';
 
 fs.createReadStream('in.png')
     .pipe(new PNG({
@@ -131,7 +137,6 @@ As input any color type is accepted (grayscale, rgb, palette, grayscale with alp
 ## Class: PNG
 `PNG` is readable and writable `Stream`.
 
-
 ### Options
 - `width` - use this with `height` if you want to create png from scratch
 - `height` - as above
@@ -164,11 +169,9 @@ Image's header has been parsed, metadata contains this information:
 - `alpha` image contains alpha channel
 - `interlace` image is interlaced
 
-
 ### Event: "parsed"
 `function(data) { }`
 Input image has been completely parsed, `data` is complete and ready for modification.
-
 
 ### Event: "error"
 `function(error) { }`
@@ -203,7 +206,7 @@ Returns `this` for method chaining.
 
 For example, the following code copies the top-left 100x50 px of `in.png` into dst and writes it to `out.png`:
 ```js
-var dst = new PNG({width: 100, height: 50});
+const dst = new PNG({width: 100, height: 50});
 fs.createReadStream('in.png')
     .pipe(new PNG())
     .on('parsed', function() {
@@ -231,14 +234,11 @@ fs.createReadStream('in.png')
 ### Property: width
 Width of image in pixels
 
-
 ### Property: height
 Height of image in pixels
 
-
 ### Property: data
 Buffer of image pixel data. Every pixel consists 4 bytes: R, G, B, A (opacity).
-
 
 ### Property: gamma
 Gamma of image (0 if not specified)
@@ -250,8 +250,8 @@ convert each pixel's transparency to the appropriate RGB value. By default, pngj
 the image against a white background. You can override this in the options:
 
 ```js
-var fs = require('fs'),
-    PNG = require('pngjs').PNG;
+import fs from 'fs';
+import { PNG } = from 'pngjs3';
 
 fs.createReadStream('in.png')
     .pipe(new PNG({
@@ -275,20 +275,20 @@ fs.createReadStream('in.png')
 
 Take a buffer and returns a PNG image. The properties on the image include the meta data and `data` as per the async API above.
 
-```
-var data = fs.readFileSync('in.png');
-var png = PNG.sync.read(data);
+```js
+const data = fs.readFileSync('in.png');
+const png = PNG.sync.read(data);
 ```
 
 ### PNG.sync.write(png)
 
 Take a PNG image and returns a buffer. The properties on the image include the meta data and `data` as per the async API above.
 
-```
-var data = fs.readFileSync('in.png');
-var png = PNG.sync.read(data);
-var options = { colorType: 6 };
-var buffer = PNG.sync.write(png, options);
+```js
+const data = fs.readFileSync('in.png');
+const png = PNG.sync.read(data);
+const options = { colorType: 6 };
+const buffer = PNG.sync.write(png, options);
 fs.writeFileSync('out.png', buffer);
 ```
 
@@ -296,15 +296,28 @@ fs.writeFileSync('out.png', buffer);
 
 Adjusts the gamma of a sync image. See the async adjustGamma.
 
-```
-var data = fs.readFileSync('in.png');
-var png = PNG.sync.read(data);
+```js
+const data = fs.readFileSync('in.png');
+const png = PNG.sync.read(data);
 PNG.adjustGamma(png);
 ```
 
-
 Changelog
 ============
+
+### 3.4.1 - 22/12/2017
+- Fixed bug in grayscaleData for rgb
+- Fixed Flow typings with all the sub-elements
+
+### 3.4.0 - 22/12/2017
+- Fork to pngjs3
+- Added browserify for browser loading
+- Added propData and grayscaleData
+- Added Flow typings
+
+### 3.3.1 - 15/11/2017
+
+- Bugfixes and removal of es6
 
 ### 3.3.1 - 15/11/2017
 
