@@ -1,5 +1,3 @@
-'use strict';
-
 const serveStatic = require('serve-static');
 //import serveIndex from 'serve-index';
 const http = require('http');

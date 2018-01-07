@@ -3,7 +3,6 @@
 // Distributed under the MIT License
 // For original source and documentation visit:
 // http://www.github.com/HumbleSoftware/js-imagedif
-'use strict';
 /* eslint-disable */
 
 (function(name, definition) {

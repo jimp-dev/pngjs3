@@ -41,9 +41,9 @@
   },
   "scripts": {
     "build": "npm run compile && npm run build:flow && npm run build:browserify",
-    "build:flow": "flow-copy-source -v -i 'test/**' lib dist",
-    "build:clean": "rimraf dist",
-    "build:browserify": "browserify dist/png.js --standalone png > browser.js && cp dist/png.js.flow browser.js.flow",
+    "build:flow": "flow-copy-source -v -i 'test/**' lib browser",
+    "build:clean": "rimraf dist && rimraf browser",
+    "build:browserify": "browserify dist/png.js --standalone png > browser/index.js && mv browser/png.js.flow browser/index.js.flow",
     "prepublish": "npm run build",
     "compile": "npm run build:clean && babel -d dist/ lib/",
     "coverage": "NODE_ENV=test nyc babel-tape-runner test/*-spec.js nolarge| tap-nyc",

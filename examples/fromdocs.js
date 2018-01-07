@@ -1,5 +1,6 @@
 import fs from 'fs';
 import { PNG } from '../lib/png';
+/* eslint-disable no-invalid-this */
 
 fs.createReadStream('test/in/basi0g01.png')
   .pipe(new PNG({
@@ -11,11 +12,11 @@ fs.createReadStream('test/in/basi0g01.png')
 
         // invert color
         this.data[idx] = 255 - this.data[idx];
-        this.data[idx+1] = 255 - this.data[idx+1];
-        this.data[idx+2] = 255 - this.data[idx+2];
+        this.data[idx + 1] = 255 - this.data[idx + 1];
+        this.data[idx + 2] = 255 - this.data[idx + 2];
 
         // and reduce opacity
-        this.data[idx+3] = this.data[idx+3] >> 1;
+        this.data[idx + 3] = this.data[idx + 3] >> 1;
       }
     }
 

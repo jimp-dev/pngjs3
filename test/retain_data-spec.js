@@ -38,4 +38,4 @@ import bufferEqual from 'buffer-equal';
               }));
       });
   });
-})
+});

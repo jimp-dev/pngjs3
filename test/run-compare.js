@@ -1,4 +1,3 @@
-'use strict';
 /* eslint-disable no-console */
 require('./http-server');
 
@@ -8,7 +7,7 @@ import phantomjs from 'phantomjs-prebuilt';
 var binPath = phantomjs.path;
 
 var childArgs = [
-  path.join(__dirname, 'phantom-compare.js')
+  path.join(__dirname, 'phantom-compare.js'),
 ];
 
 try {

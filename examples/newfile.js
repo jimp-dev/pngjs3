@@ -19,5 +19,5 @@ for (var y = 0; y < newfile.height; y++) {
 newfile.pack()
   .pipe(fs.createWriteStream(__dirname + '/newfile.png'))
   .on('finish', function() {
-    console.log('Written!');
+    console.log('Written!'); //  eslint-disable-line
   });

@@ -41,7 +41,7 @@ setInterval(function() {
   }
 }, 100);
 
-page.onConsoleMessage = function(msg, lineNum, sourceId) {
+page.onConsoleMessage = function(msg, lineNum, sourceId) { // eslint-disable-line
   //console.log('CONSOLE: ' + msg);
 };
 

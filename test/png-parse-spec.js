@@ -3,6 +3,7 @@ import fs from 'fs';
 import path from 'path';
 var PNG = require('../lib/png').PNG;
 import stream from 'stream';
+/* eslint-disable no-invalid-this */
 
 function parseFile(filename, cb) {
   fs.createReadStream(path.join(__dirname, 'png-parse-data', filename))
@@ -45,10 +46,10 @@ test('should correctly parse an 1-bit colormap png', function(t) {
     t.equal(png.data.length, 1024 * 1024 * 4);
     //t.equal(png.trailer.length, 0);
 
-    var y = 1024,
-      x;
+    let y = 1024;
+    let x;
+    let isOk = true;
 
-    var isOk = true;
     while (y--) {
       x = 1024;
       while (x--) {
@@ -74,10 +75,10 @@ test('should correctly parse an 8-bit grayscale png', function(t) {
     t.equal(png.data.length, 16 * 16 * 4);
     //t.equal(png.trailer.toString(), "Hello, world!\n");
 
-    var y = 16,
-      x;
+    let y = 16;
+    let x;
+    let isOk = true;
 
-    var isOk = true;
     while (y--) {
       x = 16;
       while (x--) {
@@ -103,10 +104,10 @@ test('should correctly parse an 8-bit truecolor png', function(t) {
     t.equal(png.data.length, 16 * 16 * 4);
     //t.equal(png.trailer.length, 0);
 
-    var y = 16,
-      x;
+    let y = 16;
+    let x;
+    let isOk = true;
 
-    var isOk = true;
     while (y--) {
       x = 16;
       while (x--) {
@@ -132,9 +133,9 @@ test('should correctly parse an 8-bit truecolor png with alpha', function(t) {
     t.equal(png.data.length, 16 * 16 * 4);
     //t.equal(png.trailer.length, 0);
 
-    var y = 16,
-      x;
-    var isOk = true;
+    let y = 16;
+    let x;
+    let isOk = true;
 
     while (y--) {
       x = 16;
@@ -181,9 +182,9 @@ test('should correctly read an indexed color image', function(t) {
     t.equal(png.data.length, 16 * 16 * 4);
     //t.equal(png.trailer.length, 0);
 
-    var y = 16,
-      x;
-    var isOk = true;
+    let y = 16;
+    let x;
+    let isOk = true;
 
     while (y--) {
       x = 16;
@@ -226,9 +227,9 @@ test('should correctly read an indexed color image with alpha', function(t) {
     t.equal(png.data.length, 16 * 16 * 4);
     //t.equal(png.trailer.length, 0);
 
-    var y = 16,
-      x;
-    var isOk = true;
+    let y = 16;
+    let x;
+    let isOk = true;
 
     while (y--) {
       x = 16;
@@ -320,6 +321,7 @@ test('should bail with an error given an invalid PNG', function(t) {
 });
 
 test('should return an error if a PNG is normal except for a missing IEND', function(t) {
+  // eslint-disable-next-line
   var buf = new Buffer('89504e470d0a1a0a0000000d49484452000000100000001008000000003a98a0bd000000017352474200aece1ce90000002174455874536f6674776172650047726170686963436f6e7665727465722028496e74656c297787fa190000008849444154789c448e4111c020100363010b58c00216b080052c60010b58c0c259c00216ae4d3b69df99dd0d1062caa5b63ee6b27d1c012996dceae86b6ef38398106acb65ae3e8edbbef780564b5e73743fdb409e1ef2f4803c3de4e901797ac8d3f3f0f490a7077ffffd03f5f507eaeb0fd4d71fa8af3f505f7fa0befe7c7dfdb9000000ffff0300c0fd7f8179301408', 'hex');
 
   return parseBuffer(buf, function(err) {
