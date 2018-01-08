@@ -305,7 +305,11 @@ PNG.adjustGamma(png);
 Changelog
 ============
 
-### 3.4.1 - 22/12/2017
+### 3.4.2 - 8/01/2018
+- Fixed bug in propData
+- Changed min/max value search to for loop with break
+
+### 3.4.1 - 7/01/2018
 - Fixed bug in grayscaleData for rgb
 - Fixed Flow typings with all the sub-elements
 
