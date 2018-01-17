@@ -305,6 +305,9 @@ PNG.adjustGamma(png);
 Changelog
 ============
 
+### 3.5.0 - 17/01/2018
+- Added propData2ImageClamped for copying propData into Uint8ClampedArray
+
 ### 3.4.2 - 8/01/2018
 - Fixed bug in propData
 - Changed min/max value search to for loop with break
