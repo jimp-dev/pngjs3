@@ -74,7 +74,7 @@
     "babel-preset-flow": "^6.23.0",
     "babel-register": "^6.26.0",
     "babel-tape-runner": "^2.0.1",
-    "browserify": "^15.0.0",
+    "browserify": "^16.0.0",
     "buffer-equal": "1.0.0",
     "connect": "^3.6.5",
     "coveralls": "^3.0.0",
