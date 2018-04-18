@@ -1,4 +1,8 @@
 [ignore]
+dist
+browser
+browser.js.flow
+browser.js
 
 [include]
 

@@ -1,3 +1,4 @@
+// @flow
 import fs from 'fs';
 import { PNG } from '../lib/png';
 import test from 'tape';
