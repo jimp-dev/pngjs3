@@ -1,8 +1,9 @@
 [ignore]
-dist
+*./dist
 browser
 browser.js.flow
 browser.js
+.*/node_modules/module-deps/.*
 
 [include]
 

@@ -305,6 +305,14 @@ PNG.adjustGamma(png);
 Changelog
 ============
 
+### 4.0.0 - 03/08/2018
+- Change to browserify-zlib (causes one async test case to fail :-()
+
+### 3.6.2 - 03/08/2018
+- Change to rollup - now includes es6 module, umd and cjs
+- Package updates
+- Fixes to buggy flow interface
+
 ### 3.5.0 - 17/01/2018
 - Added propData2ImageClamped for copying propData into Uint8ClampedArray
 
