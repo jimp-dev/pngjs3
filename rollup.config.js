@@ -26,12 +26,11 @@ const sharedPlugins = [
   rollupBabel({
     babelrc: false,
     presets: [
-      ['env', { modules: false }],
-      'flow',
-      'es2015-rollup',
+      ['@babel/env', { modules: false }],
+      '@babel/flow',
     ],
     exclude: 'node_modules/**',
-    plugins: ['transform-class-properties'],
+    plugins: ['@babel/plugin-proposal-class-properties'],
   }),
   commonJsResolver,
   nodeGlobals(),
