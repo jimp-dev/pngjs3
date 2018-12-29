@@ -3,7 +3,6 @@ import commonjs from 'rollup-plugin-commonjs';
 import filesize from 'rollup-plugin-filesize';
 import { terser } from 'rollup-plugin-terser';
 import sourceMaps from 'rollup-plugin-sourcemaps';
-import browserifyPlugin from 'rollup-plugin-browserify-transform';
 import nodeResolver from 'rollup-plugin-node-builtins';
 import nodeGlobals from 'rollup-plugin-node-globals';
 
@@ -32,10 +31,9 @@ const sharedPlugins = [
     exclude: 'node_modules/**',
     plugins: ['@babel/plugin-proposal-class-properties'],
   }),
-  commonJsResolver,
   nodeGlobals(),
-  nodeResolver(),
-  browserifyPlugin,
+  nodeResolver({ browser: true }),
+  commonJsResolver,
 ];
 
 
