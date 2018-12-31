@@ -1,8 +1,9 @@
 {
   "presets": [
     "@babel/preset-env",
-    "@babel/preset-flow"
+    "@babel/preset-flow",
   ],
+  "plugins": ["@babel/plugin-proposal-class-properties"],
   "env": {
     "test": {
       "plugins": [

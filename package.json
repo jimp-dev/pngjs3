@@ -70,7 +70,7 @@
     "@babel/cli": "^7.0.0",
     "@babel/core": "^7.0.0",
     "@babel/node": "^7.0.0",
-    "@babel/plugin-proposal-class-properties": "^7.0.0",
+    "@babel/plugin-proposal-class-properties": "^7.2.3",
     "@babel/preset-env": "^7.0.0",
     "@babel/preset-flow": "^7.0.0",
     "@babel/register": "^7.0.0",
@@ -78,11 +78,11 @@
     "babel-plugin-istanbul": "^5.1.0",
     "babel-preset-es2015-rollup": "^3.0.0",
     "babel-tape-runner": "^3.0.0",
-    "browserify": "^16.2.3",
     "buffer-equal": "1.0.0",
     "connect": "^3.6.6",
     "coveralls": "^3.0.2",
     "eslint": "^5.11.1",
+    "eslint-plugin-babel": "^5.3.0",
     "eslint-plugin-flowtype": "^3.2.0",
     "flow-bin": "^0.89.0",
     "flow-copy-source": "^2.0.2",
@@ -92,7 +92,7 @@
     "phantomjs-prebuilt": "^2.1.16",
     "rimraf": "^2.6.2",
     "rollup": "^1.0.0",
-    "rollup-plugin-babel": "^4.0.1",
+    "rollup-plugin-babel": "^4.2.0",
     "rollup-plugin-commonjs": "^9.2.0",
     "rollup-plugin-filesize": "^5.0.1",
     "rollup-plugin-node-builtins": "^2.1.2",
@@ -102,7 +102,7 @@
     "serve-static": "^1.13.2",
     "tap-dot": "^2.0.0",
     "tap-nyc": "^1.0.3",
-    "tape": "^4.9.1"
+    "tape": "^4.9.2"
   },
   "nyc": {
     "require": [
