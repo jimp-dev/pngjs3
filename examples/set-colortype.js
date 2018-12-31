@@ -1,5 +1,5 @@
 import fs from 'fs';
-import { PNG } from '../lib/png';
+import PNG from '../lib';
 
 const width = 320;
 const height = 200;

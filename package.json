@@ -31,7 +31,7 @@
     "pngjs"
   ],
   "engines": {
-    "node": ">=4.0.0"
+    "node": ">=8.0.0"
   },
   "main": "./dist/pngjs3.js",
   "module": "./dist/pngjs3.es.js",

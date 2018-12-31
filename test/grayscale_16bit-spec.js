@@ -1,7 +1,7 @@
 #!/usr/bin/env babel-node
 import fs from 'fs';
 import test from 'tape';
-import { PNG } from '../lib/png';
+import PNG from '../lib/png';
 
 test('read grayscale 16bit and check output', function(t) {
   t.timeoutAfter(1000 * 60 * 5);

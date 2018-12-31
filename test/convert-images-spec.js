@@ -1,6 +1,6 @@
 // @flow
 import fs from 'fs';
-import { PNG } from '../lib/png';
+import PNG, { sync as PNGSync } from '../lib';
 import test from 'tape';
 
 var noLargeOption = process.argv.indexOf('nolarge') >= 0;
@@ -26,7 +26,7 @@ fs.readdir(__dirname + '/in/', function(err, orgFiles) {
 
       var data = fs.readFileSync(__dirname + '/in/' + file);
       try {
-        var png = PNG.sync.read(data);
+        var png = PNGSync.read(data);
       }
       catch (e) {
         if (!expectedError) {

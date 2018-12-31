@@ -1,6 +1,6 @@
 #!/usr/bin/env babel-node
 import fs from 'fs';
-import { PNG } from '../lib/png';
+import PNG, { sync as PNGSync } from '../lib';
 import test from 'tape';
 import bufferEqual from 'buffer-equal';
 
@@ -25,8 +25,8 @@ import bufferEqual from 'buffer-equal';
                 if (fs.existsSync(outFileName)) {
                   t.pass('completed');
 
-                  const org = PNG.sync.read(fs.readFileSync(readFileName));
-                  const out = PNG.sync.read(fs.readFileSync(outFileName));
+                  const org = PNGSync.read(fs.readFileSync(readFileName));
+                  const out = PNGSync.read(fs.readFileSync(outFileName));
 
                   var isBufferEqual = bufferEqual(org.data, out.data);
                   t.ok(isBufferEqual, 'compares with working file ok');

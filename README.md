@@ -8,8 +8,9 @@ pngjs3
 Simple PNG encoder/decoder for Node.js and browsers with no dependencies.
 
 A fork from [pngjs2](https://github.com/lukeapage/pngjs) that in
-turn is based on the original [pngjs](https://github.com/niegowski/node-pngjs) with
-the following enhancements:
+turn is based on the original [pngjs](https://github.com/niegowski/node-pngjs). The
+package is prepared for the browser and there are some changes in the exports. The
+`pngjs2` has been extended with the following enhancements:
 
  * `skipRescale` that allows retrieval of 16-bit data if input was 16-bit
  * `grayscaleData` for retrieving the grayscale bitmap (*note* ignores alpha channel and caches the grayscale conversion&dagger;)
@@ -45,13 +46,14 @@ Known lack of support for:
 Requirements
 ============
 
-* Node.js v6 pr later (older versions timeout on 2 TravisCI tests)
+* Node.js v8 or later
 
 Comparison Table
 ================
 
 Name     |  Forked From | Sync | Async | 16 Bit | 1/2/4 Bit | Interlace | Gamma | Encodes | Tested
 ---------|--------------|------|-------|--------|-----------|-----------|-------|---------|--------
+pngjs3   | pngjs        | Yes  | Yes   | Yes    | Yes       | Yes       | Yes   | Yes     | Yes
 pngjs    |              | Yes  | Yes   | Yes    | Yes       | Yes       | Yes   | Yes     | Yes
 node-png | pngjs        | No   | Yes   | No     | No        | No        | Hidden| Yes     | Manual
 png-coder| pngjs        | No   | Yes   | Yes    | No        | No        | Hidden| Yes     | Manual
@@ -92,17 +94,13 @@ $ yarn add pngjs3
 
 Browser
 ===========
-The package has been build with a [Browserify](browserify.org) version (`npm run browserify`) and you can use the browser version by including in your code:
-
-```
-import { PNG } from 'pngjs3/browser';
-```
+The package has been build with browser support using `browserify-zlib` instead of NodeJS' `zlib` by including in your code.
 
 Example
 ==========
 ```js
 import fs from 'fs';
-import { PNG } from 'pngjs3';
+import PNG from 'pngjs3';
 
 fs.createReadStream('in.png')
     .pipe(new PNG({
@@ -199,8 +197,9 @@ Starts converting data to PNG file Stream.
 Returns `this` for method chaining.
 
 
-### png.bitblt(dst, sx, sy, w, h, dx, dy)
-Helper for image manipulation, copies a rectangle of pixels from current (i.e. the source) image (`sx`, `sy`, `w`, `h`) to `dst` image (at `dx`, `dy`).
+### bitblt({ dst, srcX, srcY, width, height, deltaX, deltaY })
+Helper for image manipulation, copies a rectangle of pixels from current (i.e. the source) image
+(`srcX`, `srcY`, `width`, `height`) to `dst` image (at `deltaX`, `deltaY`).
 
 Returns `this` for method chaining.
 
@@ -210,10 +209,17 @@ const dst = new PNG({width: 100, height: 50});
 fs.createReadStream('in.png')
     .pipe(new PNG())
     .on('parsed', function() {
-        this.bitblt(dst, 0, 0, 100, 50, 0, 0);
+        this.bitblt({
+            dst,
+            srcX: 0, srcY: 0,
+            width: 100, height: 150,
+            deltaX: 0, deltaY: 0,
+        });
         dst.pack().pipe(fs.createWriteStream('out.png'));
     });
 ```
+
+Not that the package exports `bitblt` that takes the additionalargument `src`;
 
 ### Property: adjustGamma()
 Helper that takes data and adjusts it to be gamma corrected. Note that it is not 100% reliable with transparent colours because that requires knowing the background colour the bitmap is rendered on to.
@@ -251,7 +257,7 @@ the image against a white background. You can override this in the options:
 
 ```js
 import fs from 'fs';
-import { PNG } = from 'pngjs3';
+import PNG = from 'pngjs3';
 
 fs.createReadStream('in.png')
     .pipe(new PNG({
@@ -269,41 +275,52 @@ fs.createReadStream('in.png')
 
 # Sync API
 
-## PNG.sync
-
-### PNG.sync.read(buffer)
+## read(buffer)
 
 Take a buffer and returns a PNG image. The properties on the image include the meta data and `data` as per the async API above.
 
 ```js
+import { sync as PNGSync } from 'pngjs3';
+
 const data = fs.readFileSync('in.png');
-const png = PNG.sync.read(data);
+const png = PNGSync.read(data);
 ```
 
-### PNG.sync.write(png)
+## write(png)
 
 Take a PNG image and returns a buffer. The properties on the image include the meta data and `data` as per the async API above.
 
 ```js
+import { sync as PNGSync } from 'pngjs3';
+
 const data = fs.readFileSync('in.png');
-const png = PNG.sync.read(data);
+const png = PNGSync.read(data);
 const options = { colorType: 6 };
-const buffer = PNG.sync.write(png, options);
+const buffer = PNGSync.write(png, options);
 fs.writeFileSync('out.png', buffer);
 ```
 
-### PNG.adjustGamma(src)
+## Adjust Gamma
 
 Adjusts the gamma of a sync image. See the async adjustGamma.
 
 ```js
+import { adjustGamma } from 'pngjs3';
+
 const data = fs.readFileSync('in.png');
-const png = PNG.sync.read(data);
-PNG.adjustGamma(png);
+const png = PNGSync.read(data);
+adjustGamma(png);
 ```
 
 Changelog
 ============
+
+### 5.0.0 - 01/01/2019
+- BREAKING: The sync is exported as sync and no longer a static member of the PNG-class
+- Default export is now the PNG class
+- Separate export for `adjustGamma`, `bitblt` and `sync`
+- The `bitblt` now expects an object as argument due to too many arguments
+- Updated the README to match the new structure
 
 ### 4.0.0 - 03/08/2018
 - Change to browserify-zlib (causes one async test case to fail :-()

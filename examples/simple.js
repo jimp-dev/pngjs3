@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import fs from 'fs';
-import { PNG } from '../lib/png';
+import PNG from '../lib';
 
 let png = new PNG({
   filterType: -1,

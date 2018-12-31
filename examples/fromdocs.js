@@ -1,5 +1,5 @@
 import fs from 'fs';
-import { PNG } from '../lib/png';
+import PNG from '../lib';
 /* eslint-disable no-invalid-this */
 
 fs.createReadStream('test/in/basi0g01.png')

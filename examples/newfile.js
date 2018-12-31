@@ -1,4 +1,4 @@
-import { PNG } from '../lib/png';
+import PNG from '../lib';
 import fs from 'fs';
 
 var newfile = new PNG({ width: 10, height: 10 });

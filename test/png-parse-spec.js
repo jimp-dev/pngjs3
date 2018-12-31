@@ -1,7 +1,7 @@
 import test from 'tape';
 import fs from 'fs';
 import path from 'path';
-var PNG = require('../lib/png').PNG;
+import PNG from '../lib';
 import stream from 'stream';
 /* eslint-disable no-invalid-this */
 

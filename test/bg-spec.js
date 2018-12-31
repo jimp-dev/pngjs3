@@ -1,6 +1,6 @@
 #!/usr/bin/env babel-node
 import fs from 'fs';
-import { PNG } from '../lib/png';
+import PNG from '../lib/png';
 import test from 'tape';
 import bufferEqual from 'buffer-equal';
 

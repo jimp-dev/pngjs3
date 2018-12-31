@@ -1,6 +1,6 @@
 #!/usr/bin/env babel-node
 import fs from 'fs';
-import { PNG } from '../lib/png';
+import PNG, { sync as PNGSync } from '../lib';
 import test from 'tape';
 import bufferEqual from 'buffer-equal';
 
@@ -31,8 +31,8 @@ test('Check same image saved in different modes generate the same buffers', func
 
   const grayscaleGradient = __dirname + '/imgs/img8_gradient.png';
   const rgbGradient = __dirname + '/imgs/img8_gradient_rgb.png';
-  const { data: grayData } = PNG.sync.read(fs.readFileSync(grayscaleGradient));
-  const { data: rgbData } = PNG.sync.read(fs.readFileSync(rgbGradient));
+  const { data: grayData } = PNGSync.read(fs.readFileSync(grayscaleGradient));
+  const { data: rgbData } = PNGSync.read(fs.readFileSync(rgbGradient));
 
   let isBufferEqual = bufferEqual(grayData, rgbData);
   t.ok(isBufferEqual, 'compares with grayscale file ok');

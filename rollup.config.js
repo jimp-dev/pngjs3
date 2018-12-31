@@ -38,7 +38,7 @@ const sharedPlugins = [
 
 
 const shared = {
-  input: 'lib/png.js',
+  input: 'lib/index.js',
   external: [],
 };
 

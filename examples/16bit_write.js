@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import fs from 'fs';
-import { PNG } from '../lib/png';
+import PNG from '../lib';
 
 var width = 32;
 var height = 64;
