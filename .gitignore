@@ -4,6 +4,7 @@ coverage
 examples/*.png
 dist
 package-lock\.json
+yarn.lock
 \.nyc_output
 flow-typed/npm
 test/imgs/out_*
