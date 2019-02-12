@@ -315,6 +315,9 @@ adjustGamma(png);
 Changelog
 ============
 
+### 5.0.1 - 02/12/2019
+- Updated packages
+
 ### 5.0.0 - 01/01/2019
 - BREAKING: The sync is exported as sync and no longer a static member of the PNG-class
 - Default export is now the PNG class
