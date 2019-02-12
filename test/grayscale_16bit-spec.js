@@ -65,13 +65,13 @@ test('read grayscale 16bit and check output', function(t) {
           t.fail('Invalid grayscale conversion');
         }
 
-        const propData = png.propData();
+        const propData = png.propData(true, true);
         if (propData.length !== grayscaleData.length) {
           t.fail('Invalid grayscale conversion');
         }
-        const min = propData.reduce((p, c) => p < c ? p : c, Math.pow(2, 16) - 1);
-        const tol = 1e-9;
-        if (min < tol) {
+        const min = propData.reduce((p, c) => p < c ? p : c, 1);
+        const tol = 1e-3;
+        if (min > tol) {
           t.fail(`The minimum in proportions should be 0 not ${min}`);
         }
         const max = propData.reduce((p, c) => p > c ? p : c, -1);
