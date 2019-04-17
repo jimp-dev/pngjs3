@@ -315,6 +315,9 @@ adjustGamma(png);
 Changelog
 ============
 
+### 5.0.2 - 17/04/2019
+- Updated packages
+
 ### 5.0.1 - 02/12/2019
 - Updated packages
 
