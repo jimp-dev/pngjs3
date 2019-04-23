@@ -1,6 +1,6 @@
 {
   "name": "pngjs3",
-  "version": "5.0.2",
+  "version": "5.0.3",
   "description": "PNG encoder/decoder in pure JS, supporting any bit size & interlace, async & sync with full test suite.",
   "contributors": [
     "Max Gordon",
@@ -17,7 +17,7 @@
     "toriningen",
     "Eugene Kulabuhov"
   ],
-  "homepage": "https://github.com/gforge/pngj3",
+  "homepage": "https://github.com/gforge/pngjs3",
   "keywords": [
     "PNG",
     "decoder",
@@ -75,7 +75,7 @@
     "@babel/preset-flow": "^7.0.0",
     "@babel/register": "^7.4.0",
     "babel-eslint": "^10.0.1",
-    "babel-plugin-istanbul": "^5.1.2",
+    "babel-plugin-istanbul": "^5.1.3",
     "babel-preset-es2015-rollup": "^3.0.0",
     "babel-tape-runner": "^3.0.0",
     "buffer-equal": "1.0.0",
@@ -91,7 +91,7 @@
     "nyc": "^14.0.0",
     "phantomjs-prebuilt": "^2.1.16",
     "rimraf": "^2.6.2",
-    "rollup": "^1.10.0",
+    "rollup": "^1.10.1",
     "rollup-plugin-babel": "^4.3.2",
     "rollup-plugin-commonjs": "^9.3.4",
     "rollup-plugin-filesize": "^6.0.1",
