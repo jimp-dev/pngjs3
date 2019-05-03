@@ -329,3 +329,30 @@ test('should return an error if a PNG is normal except for a missing IEND', func
     t.end();
   });
 });
+
+test('should bail with an error given an empty file', (t) => {
+  var buf = new Buffer('');
+
+  return parseBuffer(buf, (err) => {
+    t.ok(err instanceof Error, 'Error should be received');
+    t.end();
+  });
+});
+
+test('should bail with an error given an empty file', (t) => {
+  var buf = new Buffer('');
+
+  return parseBuffer(buf, (err) => {
+    t.ok(err instanceof Error, 'Error should be received');
+    t.end();
+  });
+});
+
+test('should bail with an error given a truncated PNG', (t) => {
+  var buf = new Buffer('89504e470d0a1a0a000000', 'hex');
+
+  return parseBuffer(buf, function(err) {
+    t.ok(err instanceof Error, 'Error should be received');
+    t.end();
+  });
+});
