@@ -330,6 +330,15 @@ test('should return an error if a PNG is normal except for a missing IEND', func
   });
 });
 
+test('should set alpha=true in metadata for images with tRNS chunk', function(t) {
+  fs.createReadStream(path.join(__dirname, 'in', 'tbbn0g04.png'))
+    .pipe(new PNG())
+    .on('metadata', function(metadata) {
+      t.ok(metadata.alpha, 'Image should have alpha=true');
+      t.end();
+    });
+});
+
 test('should bail with an error given an empty file', (t) => {
   var buf = new Buffer('');
 
