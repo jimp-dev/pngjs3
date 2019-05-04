@@ -315,6 +315,13 @@ adjustGamma(png);
 Changelog
 ============
 
+### 5.0.4 - 04/05/2019
+- Added with commits from original fork (https://github.com/lukeapage/pngjs) implemented fixes and improvements should now match
+- Updated packages
+
+### 5.0.3 - 23/04/2019
+- Homepage url + package updates
+
 ### 5.0.2 - 17/04/2019
 - Updated packages
 
