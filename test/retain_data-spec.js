@@ -39,3 +39,26 @@ import bufferEqual from 'buffer-equal';
       });
   });
 });
+
+test('Check serialization', function(t) {
+  t.timeoutAfter(1000 * 60 * 5);
+
+  const readFileName = __dirname + '/imgs/palette.png';
+  const pngObject = new PNG();
+  fs.createReadStream(readFileName)
+    .pipe(pngObject)
+    .on('error', function(error) {
+      t.fail('Async: Unexpected error parsing palett.png:\n' + error.message + '\n' + error.stack);
+      t.end();
+    })
+    .on('parsed', function() {
+      const tmp = pngObject.serialize();
+      const recreated = PNG.deserialize(tmp);
+      t.ok(recreated !== pngObject, 'Not equal object');
+      t.ok(recreated.store === pngObject.store, 'Equal storage');
+      recreated.width = 12;
+      t.ok(recreated.store !== pngObject.store, 'Storage should be immutable');
+      t.ok(recreated.shape !== pngObject.shape, 'Storage should be immutable');
+      t.end();
+    });
+});

@@ -1,6 +1,6 @@
 {
   "name": "pngjs3",
-  "version": "5.0.4",
+  "version": "5.1.0",
   "description": "PNG encoder/decoder in pure JS, supporting any bit size & interlace, async & sync with full test suite.",
   "contributors": [
     "Max Gordon",
@@ -84,14 +84,14 @@
     "eslint": "^5.16.0",
     "eslint-plugin-babel": "^5.3.0",
     "eslint-plugin-flowtype": "^3.7.0",
-    "flow-bin": "^0.98.0",
+    "flow-bin": "^0.98.1",
     "flow-copy-source": "^2.0.4",
     "istanbul": "^0.4.4",
     "nodemon": "^1.19.0",
     "nyc": "^14.1.0",
     "phantomjs-prebuilt": "^2.1.16",
     "rimraf": "^2.6.2",
-    "rollup": "^1.11.0",
+    "rollup": "^1.11.3",
     "rollup-plugin-babel": "^4.3.2",
     "rollup-plugin-commonjs": "^9.3.4",
     "rollup-plugin-filesize": "^6.0.1",
@@ -112,6 +112,7 @@
     "instrument": false
   },
   "dependencies": {
-    "browserify-zlib": "^0.2.0"
+    "browserify-zlib": "^0.2.0",
+    "immer": "^3.1.1"
   }
 }

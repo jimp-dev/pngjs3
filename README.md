@@ -94,7 +94,7 @@ $ yarn add pngjs3
 
 Browser
 ===========
-The package has been build with browser support using `browserify-zlib` instead of NodeJS' `zlib` by including in your code.
+The package has been build with browser support using `browserify-zlib` instead of NodeJS' `zlib`.
 
 Example
 ==========
@@ -243,11 +243,39 @@ Width of image in pixels
 ### Property: height
 Height of image in pixels
 
+### Property: shape
+Object with height and width
+
 ### Property: data
 Buffer of image pixel data. Every pixel consists 4 bytes: R, G, B, A (opacity).
 
 ### Property: gamma
 Gamma of image (0 if not specified)
+
+## Serializing and deserializing
+
+When using libraries suchs as Redux it is "highly recommended that you only put plain serializable objects, arrays, and primitives into your store". For this purpose PNGJS has implemented the `serialize()` and `static deserialize()` methods.
+
+
+```js
+import PNG from 'pngjs3';
+
+myPNG = new PNG();
+...
+
+const data2store = myPNG.serialize();
+...
+
+const myRecreatedObject = PNG.deserialize(data2store);
+
+// Note that:
+console.log(myRecreatedObject !== myPNG, 'A new object has been created');
+console.log(myRecreatedObject.storage === myPNG.storage, 'But the storage (i.e. data) is the same');
+```
+
+### Immutability
+
+The storage in the PNG-object is immutable through `immer`. This means that any changes to the storage will propagate from subitem to the top item. This allows for efficient comparison `stora === prevStore`.
 
 ## Packing a PNG and removing alpha (RGBA to RGB)
 
@@ -257,7 +285,7 @@ the image against a white background. You can override this in the options:
 
 ```js
 import fs from 'fs';
-import PNG = from 'pngjs3';
+import PNG from 'pngjs3';
 
 fs.createReadStream('in.png')
     .pipe(new PNG({
@@ -314,6 +342,11 @@ adjustGamma(png);
 
 Changelog
 ============
+
+### 5.1.0 - 07/05/2019
+- Implemented immutable store (setters and getters should allow for the same functionality as before) - issue #49
+- There is a `shape` attribute with the `width` and the `height`
+- For storage you can now use `serialize()` and `static deserialize()`
 
 ### 5.0.4 - 04/05/2019
 - Added with commits from original fork (https://github.com/lukeapage/pngjs) implemented fixes and improvements should now match
