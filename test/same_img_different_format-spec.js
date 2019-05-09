@@ -45,7 +45,6 @@ test('Check same image saved in different modes generate the same buffers', func
   t.end();
 });
 
-
 test('Check same image saved in different modes generate the same buffers in async with stream', function(t) {
   t.timeoutAfter(1000 * 60 * 5);
 
@@ -56,7 +55,7 @@ test('Check same image saved in different modes generate the same buffers in asy
   fs.createReadStream(grayscaleGradient)
     .pipe(grayPNG)
     .on('error', function(error) {
-      t.fail(`Failed to convert gratscale file: ${error.message}`);
+      t.fail(`Failed to convert grayscale file: ${error.message}`);
       t.end();
     })
     .on('parsed', (grayData) => {
@@ -93,7 +92,7 @@ test('Check same image saved in different modes generate the same buffers in asy
   fs.createReadStream(grayscaleGradient)
     .pipe(grayPNG)
     .on('error', function(error) {
-      t.fail(`Failed to convert gratscale file: ${error.message}`);
+      t.fail(`Failed to convert grayscale file: ${error.message}`);
       t.end();
     })
     .on('parsed', (grayData) => {
