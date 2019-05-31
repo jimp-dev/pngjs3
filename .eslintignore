@@ -1,2 +1,3 @@
 browser/*
 dist/*
+lib/index.d.ts

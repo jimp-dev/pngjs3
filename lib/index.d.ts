@@ -42,7 +42,7 @@ export interface Store {
   config: {
     postParse: {
       initGrayscaleData: boolean | void,
-      initPropData?: { shrinkMax?: boolean, shrinkMin?: boolean },
+      initPropData?: PropDataInit,
     },
   },
 }
@@ -74,10 +74,10 @@ export interface Options {
   bgColor?: { red: number; green: number; blue: number };
   skipRescale?: boolean;
   initGrayscaleData?: boolean;
-  initPropData?: boolean;
+  initPropData?: PropDataInit;
 }
 
-export class PNG extends Stream {
+export declare class PNG extends Stream {
   static deserialize(storeData: Store): PNG;
   constructor(options: Options);
   width: number;
