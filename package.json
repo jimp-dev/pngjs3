@@ -1,6 +1,6 @@
 {
   "name": "pngjs3",
-  "version": "5.1.1",
+  "version": "5.1.2",
   "description": "PNG encoder/decoder in pure JS, supporting any bit size & interlace, async & sync with full test suite.",
   "contributors": [
     "Max Gordon",
@@ -35,6 +35,7 @@
   },
   "main": "./dist/pngjs3.js",
   "module": "./dist/pngjs3.es.js",
+  "types": "./dist/index.d.ts",
   "directories": {
     "lib": "dist",
     "example": "examples",
