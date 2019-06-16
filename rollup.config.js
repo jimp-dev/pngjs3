@@ -20,14 +20,10 @@ const commonJsResolver = commonjs({
   sourceMap: true, // Default: true
 });
 
-
 const sharedPlugins = [
   rollupBabel({
     babelrc: false,
-    presets: [
-      ['@babel/env', { modules: false }],
-      '@babel/flow',
-    ],
+    presets: [['@babel/env', { modules: false }], '@babel/flow'],
     exclude: 'node_modules/**',
     plugins: ['@babel/plugin-proposal-class-properties'],
   }),
@@ -36,39 +32,42 @@ const sharedPlugins = [
   commonJsResolver,
 ];
 
-
 const shared = {
   input: 'lib/index.js',
-  external: [],
+  external: ['immer', 'browserify-zlib'],
 };
+
+const sharedModuleOutput = {
+  exports: 'named',
+  sourcemap: true,
+};
+
+const production = process.env.NODE_ENV !== 'production';
 
 export default [
   {
     ...shared,
     output: {
       name: 'pngjs3',
-      file:
-        process.env.NODE_ENV === 'production' ?
-          './dist/pngjs3.umd.min.js' :
-          './dist/pngjs3.umd.js',
+      file: production ? './dist/pngjs3.umd.min.js' : './dist/pngjs3.umd.js',
       format: 'umd',
       exports: 'named',
-      sourcemap: process.env.NODE_ENV !== 'production',
+      sourcemap: production,
     },
     plugins: [
       ...sharedPlugins,
-      process.env.NODE_ENV === 'production' && filesize(),
-      process.env.NODE_ENV === 'production' &&
-          terser({
-            output: { comments: false },
-            compress: {
-              keep_infinity: true, // eslint-disable-line camelcase
-              pure_getters: true, // eslint-disable-line camelcase
-            },
-            warnings: true,
-            ecma: 6,
-            toplevel: false,
-          }),
+      production && filesize(),
+      production &&
+        terser({
+          output: { comments: false },
+          compress: {
+            keep_infinity: true, // eslint-disable-line camelcase
+            pure_getters: true, // eslint-disable-line camelcase
+          },
+          warnings: true,
+          ecma: 6,
+          toplevel: false,
+        }),
     ],
   },
   {
@@ -77,20 +76,14 @@ export default [
       {
         file: 'dist/pngjs3.es6.js',
         format: 'es',
-        exports: 'named',
-        sourcemap: true,
+        ...sharedModuleOutput,
       },
       {
         file: 'dist/pngjs3.js',
         format: 'cjs',
-        exports: 'named',
-        sourcemap: true,
+        ...sharedModuleOutput,
       },
     ],
-    plugins: [
-      ...sharedPlugins,
-      sourceMaps(),
-      process.env.NODE_ENV === 'production' && filesize(),
-    ],
+    plugins: [...sharedPlugins, sourceMaps(), production && filesize()],
   },
 ];
