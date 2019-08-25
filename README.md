@@ -343,6 +343,9 @@ adjustGamma(png);
 Changelog
 ============
 
+### --> 5.1.5 - 25/08/2019
+- Update package dependencies
+
 ### 5.1.0 - 07/05/2019
 - Implemented immutable store (setters and getters should allow for the same functionality as before) - issue #49
 - There is a `shape` attribute with the `width` and the `height`
