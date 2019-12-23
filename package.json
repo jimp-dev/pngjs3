@@ -77,7 +77,7 @@
     "@babel/preset-flow": "^7.0.0",
     "@babel/register": "^7.6.2",
     "babel-eslint": "^10.0.3",
-    "babel-plugin-istanbul": "^5.2.0",
+    "babel-plugin-istanbul": "^6.0.0",
     "babel-tape-runner": "^3.0.0",
     "buffer-equal": "1.0.0",
     "connect": "^3.7.0",
