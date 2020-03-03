@@ -114,6 +114,6 @@
   },
   "dependencies": {
     "browserify-zlib": "^0.2.0",
-    "immer": "^5.0.0"
+    "immer": "^6.0.0"
   }
 }
