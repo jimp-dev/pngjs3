@@ -93,7 +93,7 @@
     "phantomjs-prebuilt": "^2.1.16",
     "rimraf": "^3.0.0",
     "rollup": "^1.26.0",
-    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-filesize": "^6.2.1",
     "rollup-plugin-node-builtins": "^2.1.2",
