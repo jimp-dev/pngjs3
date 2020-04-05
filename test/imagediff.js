@@ -10,43 +10,35 @@
   if (typeof module !== 'undefined') {
     try {
       var Canvas = require('canvas');
-    }
-    catch (e) {
+    } catch (e) {
       throw new Error(
-        e.message + '\n' +
-        'Please see https://github.com/HumbleSoftware/js-imagediff#cannot-find-module-canvas\n'
+        e.message +
+          '\n' +
+          'Please see https://github.com/HumbleSoftware/js-imagediff#cannot-find-module-canvas\n',
       );
     }
     module.exports = definition(root, name, Canvas);
-  }
-  else if (typeof define === 'function' && typeof define.amd === 'object') {
+  } else if (typeof define === 'function' && typeof define.amd === 'object') {
     define(definition);
-  }
-  else {
+  } else {
     root[name] = definition(root, name);
   }
 })('imagediff', function(root, name, Canvas) {
-
-  var
-    TYPE_ARRAY = /\[object Array\]/i,
+  var TYPE_ARRAY = /\[object Array\]/i,
     TYPE_CANVAS = /\[object (Canvas|HTMLCanvasElement)\]/i,
     TYPE_CONTEXT = /\[object CanvasRenderingContext2D\]/i,
     TYPE_IMAGE = /\[object (Image|HTMLImageElement)\]/i,
     TYPE_IMAGE_DATA = /\[object ImageData\]/i,
-
     UNDEFINED = 'undefined',
-
     canvas = getCanvas(),
     context = canvas.getContext('2d'),
     previous = root[name],
-    imagediff, jasmine;
+    imagediff,
+    jasmine;
 
   // Creation
   function getCanvas(width, height) {
-    var
-      canvas = Canvas ?
-        new Canvas() :
-        document.createElement('canvas');
+    var canvas = Canvas ? new Canvas() : document.createElement('canvas');
     if (width) {
       canvas.width = width;
     }
@@ -66,7 +58,6 @@
     return Canvas;
   }
 
-
   // Type Checking
   function isImage(object) {
     return isType(object, TYPE_IMAGE);
@@ -78,39 +69,38 @@
     return isType(object, TYPE_CONTEXT);
   }
   function isImageData(object) {
-    return Boolean(object &&
-      isType(object, TYPE_IMAGE_DATA) &&
-      typeof (object.width) !== UNDEFINED &&
-      typeof (object.height) !== UNDEFINED &&
-      typeof (object.data) !== UNDEFINED);
-  }
-  function isImageType(object) {
-    return (
-      isImage(object) ||
-      isCanvas(object) ||
-      isContext(object) ||
-      isImageData(object)
+    return Boolean(
+      object &&
+        isType(object, TYPE_IMAGE_DATA) &&
+        typeof object.width !== UNDEFINED &&
+        typeof object.height !== UNDEFINED &&
+        typeof object.data !== UNDEFINED,
     );
   }
-  function isType(object, type) {
-    return typeof (object) === 'object' && Boolean(Object.prototype.toString.apply(object).match(type));
+  function isImageType(object) {
+    return isImage(object) || isCanvas(object) || isContext(object) || isImageData(object);
   }
-
+  function isType(object, type) {
+    return (
+      typeof object === 'object' && Boolean(Object.prototype.toString.apply(object).match(type))
+    );
+  }
 
   // Type Conversion
   function copyImageData(imageData) {
-    var
-      height = imageData.height,
+    var height = imageData.height,
       width = imageData.width,
       data = imageData.data,
-      newImageData, newData, i;
+      newImageData,
+      newData,
+      i;
 
     canvas.width = width;
     canvas.height = height;
     newImageData = context.getImageData(0, 0, width, height);
     newData = newImageData.data;
 
-    for (i = imageData.data.length; i--;) {
+    for (i = imageData.data.length; i--; ) {
       newData[i] = data[i];
     }
 
@@ -131,8 +121,7 @@
     }
   }
   function toImageDataFromImage(image) {
-    var
-      height = image.height,
+    var height = image.height,
       width = image.width;
     canvas.width = width;
     canvas.height = height;
@@ -141,29 +130,25 @@
     return context.getImageData(0, 0, width, height);
   }
   function toImageDataFromCanvas(canvas) {
-    var
-      height = canvas.height,
+    var height = canvas.height,
       width = canvas.width,
       context = canvas.getContext('2d');
     return context.getImageData(0, 0, width, height);
   }
   function toImageDataFromContext(context) {
-    var
-      canvas = context.canvas,
+    var canvas = context.canvas,
       height = canvas.height,
       width = canvas.width;
     return context.getImageData(0, 0, width, height);
   }
   function toCanvas(object) {
-    var
-      data = toImageData(object),
+    var data = toImageData(object),
       canvas = getCanvas(data.width, data.height),
       context = canvas.getContext('2d');
 
     context.putImageData(data, 0, 0);
     return canvas;
   }
-
 
   // ImageData Equality Operators
   function equalWidth(a, b) {
@@ -176,9 +161,7 @@
     return equalHeight(a, b) && equalWidth(a, b);
   }
   function equal(a, b, tolerance) {
-
-    var
-      aData = a.data,
+    var aData = a.data,
       bData = b.data,
       length = aData.length,
       i;
@@ -188,13 +171,23 @@
     if (!equalDimensions(a, b)) {
       return false;
     }
-    for (i = length; i--;) {
+    for (i = length; i--; ) {
       if (aData[i] !== bData[i] && Math.abs(aData[i] - bData[i]) > tolerance) {
         var x = i % (a.width * 4);
         var y = (i - x) / (a.width * 4);
         var color = x % 4;
         x = (x - color) / 4;
-        console.log('Difference x', x, 'y', y, ['R', 'G', 'B', 'A'][color], '  -  ', aData[i], ' !== ', bData[i]);
+        console.log(
+          'Difference x',
+          x,
+          'y',
+          y,
+          ['R', 'G', 'B', 'A'][color],
+          '  -  ',
+          aData[i],
+          ' !== ',
+          bData[i],
+        );
         return false;
       }
     }
@@ -202,23 +195,24 @@
     return true;
   }
 
-
   // Diff
   function diff(a, b, options) {
     return (equalDimensions(a, b) ? diffEqual : diffUnequal)(a, b, options);
   }
   function diffEqual(a, b, options) {
-
-    var
-      height = a.height,
+    var height = a.height,
       width = a.width,
       c = getImageData(width, height), // c = a - b
       aData = a.data,
       bData = b.data,
       cData = c.data,
       length = cData.length,
-      row, column,
-      i, j, k, v;
+      row,
+      column,
+      i,
+      j,
+      k,
+      v;
 
     for (i = 0; i < length; i += 4) {
       cData[i] = Math.abs(aData[i] - bData[i]);
@@ -230,9 +224,7 @@
     return c;
   }
   function diffUnequal(a, b, options) {
-
-    var
-      height = Math.max(a.height, b.height),
+    var height = Math.max(a.height, b.height),
       width = Math.max(a.width, b.width),
       c = getImageData(width, height), // c = a - b
       aData = a.data,
@@ -241,9 +233,12 @@
       align = options && options.align,
       rowOffset,
       columnOffset,
-      row, column,
-      i, j, k, v;
-
+      row,
+      column,
+      i,
+      j,
+      k,
+      v;
 
     for (i = cData.length - 1; i > 0; i = i - 4) {
       cData[i] = 255;
@@ -251,8 +246,8 @@
 
     // Add First Image
     offsets(a);
-    for (row = a.height; row--;) {
-      for (column = a.width; column--;) {
+    for (row = a.height; row--; ) {
+      for (column = a.width; column--; ) {
         i = 4 * ((row + rowOffset) * width + (column + columnOffset));
         j = 4 * (row * a.width + column);
         cData[i + 0] = aData[j + 0]; // r
@@ -264,8 +259,8 @@
 
     // Subtract Second Image
     offsets(b);
-    for (row = b.height; row--;) {
-      for (column = b.width; column--;) {
+    for (row = b.height; row--; ) {
+      for (column = b.width; column--; ) {
         i = 4 * ((row + rowOffset) * width + (column + columnOffset));
         j = 4 * (row * b.width + column);
         cData[i + 0] = Math.abs(cData[i + 0] - bData[j + 0]); // r
@@ -279,8 +274,7 @@
       if (align === 'top') {
         rowOffset = 0;
         columnOffset = 0;
-      }
-      else {
+      } else {
         rowOffset = Math.floor((height - imageData.height) / 2);
         columnOffset = Math.floor((width - imageData.width) / 2);
       }
@@ -289,7 +283,6 @@
     return c;
   }
 
-
   // Validation
   function checkType() {
     var i;
@@ -297,12 +290,11 @@
       if (!isImageType(arguments[i])) {
         throw {
           name: 'ImageTypeError',
-          message: 'Submitted object was not an image.'
+          message: 'Submitted object was not an image.',
         };
       }
     }
   }
-
 
   // Jasmine Matchers
   function get(element, content) {
@@ -314,17 +306,14 @@
   }
 
   jasmine = {
-
     toBeImageData: function() {
       return imagediff.isImageData(this.actual);
     },
 
     toImageDiffEqual: function(expected, tolerance) {
-
-      if (typeof (document) !== UNDEFINED) {
+      if (typeof document !== UNDEFINED) {
         this.message = function() {
-          var
-            div = get('div'),
+          var div = get('div'),
             a = get('div', '<div>Actual:</div>'),
             b = get('div', '<div>Expected:</div>'),
             c = get('div', '<div>Diff:</div>'),
@@ -351,23 +340,17 @@
           div.appendChild(b);
           div.appendChild(c);
 
-          return [
-            div,
-            'Expected not to be equal.'
-          ];
+          return [div, 'Expected not to be equal.'];
         };
       }
 
       return imagediff.equal(this.actual, expected, tolerance);
-    }
+    },
   };
-
 
   // Image Output
   function imageDataToPNG(imageData, outputFile, callback) {
-
-    var
-      canvas = toCanvas(imageData),
+    var canvas = toCanvas(imageData),
       base64Data,
       decodedImage;
 
@@ -380,7 +363,6 @@
 
   // Definition
   imagediff = {
-
     createCanvas: getCanvas,
     createImageData: getImageData,
     getCanvasRef: getCanvasRef,
@@ -418,7 +400,7 @@
     noConflict: function() {
       root[name] = previous;
       return imagediff;
-    }
+    },
   };
 
   if (typeof module !== 'undefined') {
