@@ -4,7 +4,7 @@ import PNG from '../lib';
 const width = 320;
 const height = 200;
 
-let bitmapWithoutAlpha = new Buffer(width * height * 3);
+let bitmapWithoutAlpha = Buffer.alloc(width * height * 3);
 let ofs = 0;
 for (let i = 0; i < bitmapWithoutAlpha.length; i += 3) {
   bitmapWithoutAlpha[ofs++] = 0xff;

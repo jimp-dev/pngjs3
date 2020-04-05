@@ -6,7 +6,7 @@ var width = 32;
 var height = 64;
 
 /// RGBA input (color type 6)
-var buffer = new Buffer(2 * width * height * 4);
+var buffer = Buffer.alloc(2 * width * height * 4);
 var bitmap = new Uint16Array(buffer.buffer);
 for (let i = 0; i < height; i++) {
   for (let j = 0; j < width; j++) {
@@ -31,7 +31,7 @@ png.pack().pipe(fs.createWriteStream('colortype6.png'));
 
 //////// Grayscale 16 bits///////
 
-buffer = new Buffer(2 * width * height);
+buffer = Buffer.alloc(2 * width * height);
 bitmap = new Uint16Array(buffer.buffer);
 for (let i = 0; i < height; i++) {
   for (let j = 0; j < width; j++) {
