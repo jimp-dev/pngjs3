@@ -363,6 +363,7 @@ adjustGamma(png);
 
 - Update package dependencies
 - Converted Buffer() to Buffer.from & Buffer.alloc
+- Drop support for Node v8
 
 ### --> 5.1.5 - 25/08/2019
 
