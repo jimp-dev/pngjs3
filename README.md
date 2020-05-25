@@ -6,10 +6,9 @@
 
 Simple PNG encoder/decoder for Node.js and browsers with no dependencies.
 
-A fork from [pngjs2](https://github.com/lukeapage/pngjs) that in
-turn is based on the original [pngjs](https://github.com/niegowski/node-pngjs). The
+A fork from [pngjs](https://github.com/lukeapage/pngjs). The
 package is prepared for the browser and there are some changes in the exports. The
-`pngjs2` has been extended with the following enhancements:
+`pngjs` has been extended with the following enhancements:
 
 - `skipRescale` that allows retrieval of 16-bit data if input was 16-bit
 - `grayscaleData` for retrieving the grayscale bitmap (_note_ ignores alpha channel and caches the grayscale conversion&dagger;)
@@ -17,9 +16,9 @@ package is prepared for the browser and there are some changes in the exports. T
 
 &dagger; If you manipulate the `data` property of the object directly the conversions will not be recalculated due to the cache.
 
-The pngjs2 had the follow enhancements compared to the original:
+The pngjs had the follow enhancements compared to the original:
 
-- Support for reading 1,2,4 & 16 bit files
+- Support for reading 1, 2, 4 & 16 bit files
 - Support for reading interlace files
 - Support for reading `tTRNS` transparent colours
 - Support for writing colortype 0 (grayscale), colortype 2 (RGB), colortype 4 (grayscale alpha) and colortype 6 (RGBA)
@@ -45,7 +44,7 @@ Known lack of support for:
 
 # Requirements
 
-- Node.js v8 or later
+- Node.js v10 or later
 
 # Comparison Table
 
@@ -74,8 +73,6 @@ Tested using [PNG Suite](http://www.schaik.com/pngsuite/). We read every file in
 To run the tests, fetch the repo (tests are not distributed via npm) and install with `npm i`, run `npm test`.
 
 The only thing not converted is gamma correction - this is because multiple vendors will do gamma correction differently, so the tests will have different results on different browsers.
-
-In addition we use a tolerance of 3 for 16 bit images in PhantomJS because PhantomJS seems to have non-compliant rules for downscaling 16 bit images.
 
 # Installation
 
@@ -357,6 +354,11 @@ adjustGamma(png);
 ```
 
 # Changelog
+
+### --> 5.1.9 - 25/05/2020
+
+- Update package dependencies
+- Added changes implemented in original pngjs
 
 ### --> 5.1.7 - 05/04/2020
 
