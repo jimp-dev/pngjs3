@@ -365,3 +365,15 @@ test('should bail with an error given a truncated PNG', (t) => {
     t.end();
   });
 });
+
+test('Should parse with low highWaterMark', function (t) {
+  fs.createReadStream(path.join(__dirname, 'in', 'tbbn0g04.png'), { highWaterMark: 2 })
+    .pipe(new PNG())
+    .on('parsed', function () {
+      t.pass('Image should have parsed');
+      t.end();
+    })
+    .on('error', function (e) {
+      t.error(e, 'Should not error');
+    });
+});
