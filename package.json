@@ -1,6 +1,6 @@
 {
   "name": "pngjs3",
-  "version": "5.1.8",
+  "version": "5.1.9",
   "description": "PNG encoder/decoder in pure JS, supporting any bit size & interlace, async & sync with full test suite.",
   "contributors": [
     "Max Gordon",
@@ -48,10 +48,11 @@
     "build:clean": "rimraf dist",
     "prepublish": "npm run build",
     "compile": "NODE_ENV=production rollup -c && NODE_ENV=development rollup -c",
-    "coverage": "NODE_ENV=test nyc babel-tape-runner test/*-spec.js nolarge| tap-nyc",
-    "coveralls": "nyc report --reporter=text-lcov | coveralls",
+    "coverage": "NODE_ENV=test nyc --reporter=lcov --reporter=text-summary babel-tape-runner test/*-spec.js nolarge",
     "monitor": "nodemon --watch lib --delay 2.5s --exec \"npm run build\"",
-    "test": "npm run test:clean && npm run lint && babel-tape-runner test/*-spec.js | tap-dot && babel-node test/run-compare",
+    "test": "npm run test:clean && npm run lint && npm run test:tape | tap-dot && npm run test:browser",
+    "test:tape": "babel-tape-runner test/*-spec.js",
+    "test:browser": "babel-node test/run-compare",
     "test:only": "npm run test:clean && babel-tape-runner test/*-spec.js",
     "test:only:watch": "nodemon --exec 'npm run test:only' -e js,json",
     "test:watch": "nodemon --exec 'npm run test' -e js,json",
@@ -81,29 +82,30 @@
     "babel-tape-runner": "^3.0.0",
     "buffer-equal": "1.0.0",
     "connect": "^3.7.0",
-    "coveralls": "^3.1.0",
-    "eslint": "^6.6.0",
+    "codecov": "3.6.5",
+    "eslint": "^7.1.0",
     "eslint-plugin-babel": "^5.3.0",
-    "eslint-plugin-flowtype": "^4.3.0",
-    "flow-bin": "^0.123.0",
+    "eslint-plugin-flowtype": "^5.1.0",
+    "flow-bin": "^0.125.1",
     "flow-copy-source": "^2.0.8",
+    "imagediff": "^1.0.8",
     "istanbul": "^0.4.4",
-    "nodemon": "^2.0.3",
+    "nodemon": "^2.0.4",
     "nyc": "^15.0.0",
-    "phantomjs-prebuilt": "^2.1.16",
+    "puppeteer": "1.20.0",
     "rimraf": "^3.0.0",
-    "rollup": "^2.7.6",
+    "rollup": "^2.10.9",
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-commonjs": "^10.1.0",
-    "rollup-plugin-filesize": "^8.0.2",
+    "rollup-plugin-filesize": "^9.0.0",
     "rollup-plugin-node-builtins": "^2.1.2",
     "rollup-plugin-node-globals": "^1.4.0",
-    "rollup-plugin-sourcemaps": "^0.6.1",
-    "rollup-plugin-terser": "^5.1.2",
+    "rollup-plugin-sourcemaps": "^0.6.2",
+    "rollup-plugin-terser": "^6.1.0",
     "serve-static": "^1.14.1",
     "tap-dot": "^2.0.0",
     "tap-nyc": "^1.0.3",
-    "tape": "^5.0.0"
+    "tape": "^5.0.1"
   },
   "nyc": {
     "require": [
@@ -114,6 +116,6 @@
   },
   "dependencies": {
     "browserify-zlib": "^0.2.0",
-    "immer": "^6.0.3"
+    "immer": "^6.0.8"
   }
 }

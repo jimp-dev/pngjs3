@@ -7,11 +7,18 @@
     {
       "type": "node",
       "request": "launch",
+      "name": "Debug PhantomJS tests",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "test:phantomJS"],
+      "port": 9229,
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
+      "type": "node",
+      "request": "launch",
       "name": "Debug current test file",
       "program": "${workspaceRoot}/node_modules/babel-tape-runner/bin/babel-tape-runner",
-      "args": [
-        "${file}"
-      ],
+      "args": ["${file}"],
       "env": {
         "NODE_ENV": "test"
       }

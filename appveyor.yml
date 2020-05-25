@@ -1,4 +1,4 @@
-version: "{build}"
+version: '{build}'
 
 clone_depth: 10
 
@@ -18,7 +18,11 @@ test_script:
   - npm test
 
 cache:
-  - node_modules            # local npm modules
+  - node_modules # local npm modules
 
 matrix:
   fast_finish: true
+
+branches:
+  only:
+    - master

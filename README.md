@@ -1,8 +1,6 @@
-[![Build Status](https://travis-ci.org/gforge/pngjs3.svg?branch=master)](https://travis-ci.org/gforge/pngjs3) [![Build status](https://ci.appveyor.com/api/projects/status/tb8418jql1trkntd/branch/master?svg=true)](https://ci.appveyor.com/project/gforge/pngjs32/branch/master)
-[![Coverage Status](https://coveralls.io/repos/github/gforge/pngjs3/badge.svg?branch=master)](https://coveralls.io/github/gforge/pngjs3?branch=master)
+[![Build Status](https://travis-ci.com/gforge/pngjs3.svg?branch=master)](https://travis-ci.com/gforge/pngjs3) [![Build status](https://ci.appveyor.com/api/projects/status/tb8418jql1trkntd/branch/master?svg=true)](https://ci.appveyor.com/project/gforge/pngjs32/branch/master)
 [![npm version](https://badge.fury.io/js/pngjs3.svg)](http://badge.fury.io/js/pngjs3)
 [![NPM downloads](https://img.shields.io/npm/dm/pngjs3)](https://img.shields.io/npm/dm/pngjs3)
-[![Greenkeeper badge](https://badges.greenkeeper.io/gforge/pngjs3.svg)](https://greenkeeper.io/)
 
 # pngjs3
 
