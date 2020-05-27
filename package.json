@@ -70,7 +70,7 @@
     "url": "https://github.com/gforge/pngjs3/issues"
   },
   "devDependencies": {
-    "@babel/cli": "^7.6.4",
+    "@babel/cli": "^7.10.1",
     "@babel/core": "^7.9.6",
     "@babel/node": "^7.6.3",
     "@babel/plugin-proposal-class-properties": "^7.5.5",
