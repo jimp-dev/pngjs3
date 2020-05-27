@@ -76,7 +76,7 @@
     "@babel/plugin-proposal-class-properties": "^7.10.1",
     "@babel/preset-env": "^7.10.1",
     "@babel/preset-flow": "^7.10.1",
-    "@babel/register": "^7.6.2",
+    "@babel/register": "^7.10.1",
     "babel-eslint": "^10.0.3",
     "babel-plugin-istanbul": "^6.0.0",
     "babel-tape-runner": "^3.0.0",
