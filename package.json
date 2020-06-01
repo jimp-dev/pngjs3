@@ -91,7 +91,7 @@
     "imagediff": "^1.0.8",
     "istanbul": "^0.4.4",
     "nodemon": "^2.0.4",
-    "nyc": "^15.0.0",
+    "nyc": "^15.1.0",
     "puppeteer": "3.2.0",
     "rimraf": "^3.0.0",
     "rollup": "^2.10.9",
