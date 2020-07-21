@@ -40,6 +40,10 @@ const shared = {
 const sharedModuleOutput = {
   exports: 'named',
   sourcemap: true,
+  globals: {
+    immer: 'immer',
+    'browserify-zlib': 'zlib',
+  },
 };
 
 const production = process.env.NODE_ENV !== 'production';
@@ -53,6 +57,10 @@ export default [
       format: 'umd',
       exports: 'named',
       sourcemap: production,
+      globals: {
+        immer: 'immer',
+        'browserify-zlib': 'zlib',
+      },
     },
     plugins: [
       ...sharedPlugins,

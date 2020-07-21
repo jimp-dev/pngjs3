@@ -355,6 +355,12 @@ adjustGamma(png);
 
 # Changelog
 
+### --> 5.1.10 - 21/07/2020
+
+- Update package dependencies
+- Fixed rollup issues
+- Removed circular dependency
+
 ### --> 5.1.9 - 25/05/2020
 
 - Update package dependencies
