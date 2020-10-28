@@ -2,7 +2,7 @@ language: node_js
 after_success:
   - if [ "$TRAVIS_NODE_VERSION" = "8" ]; then npm run coverage && npm run codecov; fi
 node_js:
-  - 10
+  - 14
   - 12
 branches:
   only:
