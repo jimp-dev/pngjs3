@@ -355,6 +355,11 @@ adjustGamma(png);
 
 # Changelog
 
+### --> 6.0.0 - 28/10/2020
+
+- BREAKING - Sync version now throws if there is unexpected content at the end of the stream.
+- BREAKING - Drop support for node 10 (Though nothing incompatible in this release yet)
+
 ### --> 5.1.10 - 21/07/2020
 
 - Update package dependencies
