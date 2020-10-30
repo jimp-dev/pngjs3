@@ -125,29 +125,30 @@ For more examples see `examples` folder.
 
 # Async API
 
-As input any color type is accepted (grayscale, rgb, palette, grayscale with alpha, rgb with alpha) but 8 bit per sample (channel) is the only supported bit depth. Interlaced mode is not supported.
+As input any color type is accepted (grayscale, rgb, palette, grayscale with alpha, rgb with alpha) with 8 & 16 bit per sample (channel) are the supported bit depths. Interlaced mode is not supported.
 
 ## Class: PNG
 
-`PNG` is readable and writable `Stream`.
+`PNG` is a readable and writable `Stream`.
 
 ### Options
 
-- `width` - use this with `height` if you want to create png from scratch
-- `height` - as above
-- `checkCRC` - whether parser should be strict about checksums in source stream (default: `true`)
-- `deflateChunkSize` - chunk size used for deflating data chunks, this should be power of 2 and must not be less than 256 and more than 32\*1024 (default: 32 kB)
-- `deflateLevel` - compression level for deflate (default: 9)
-- `deflateStrategy` - compression strategy for deflate (default: 3)
-- `deflateFactory` - deflate stream factory (default: `zlib.createDeflate`)
-- `filterType` - png filtering method for scanlines (default: -1 => auto, accepts array of numbers 0-4)
+- `id` - An optional identifier can be provided if you want to be able to track this object in memory.
+- `width` - use this with `height` if you want to create png from scratch.
+- `height` - as above.
+- `checkCRC` - whether parser should be strict about checksums in source stream (default: `true`).
+- `deflateChunkSize` - chunk size used for deflating data chunks, this should be power of 2 and must not be less than 256 and more than 32\*1024 (default: 32 kB).
+- `deflateLevel` - compression level for deflate (default: 9).
+- `deflateStrategy` - compression strategy for deflate (default: 3).
+- `deflateFactory` - deflate stream factory (default: `zlib.createDeflate`).
+- `filterType` - png filtering method for scanlines (default: -1 => auto, accepts array of numbers 0-4).
 - `colorType` - the output colorType - see constants. 0 = grayscale, no alpha, 2 = color, no alpha, 4 = grayscale & alpha, 6 = color & alpha. Default currently 6, but in the future may calculate best mode.
-- `inputColorType` - the input colorType - see constants. Default is 6 (RGBA)
+- `inputColorType` - the input colorType - see constants. Default is 6 (RGBA).
 - `bitDepth` - the bitDepth of the output, 8 or 16 bits. Input data is expected to have this bit depth.
-  16 bit data is expected in the system endianness (Default: 8)
+  16 bit data is expected in the system endianness (Default: 8).
 - `inputHasAlpha` - whether the input bitmap has 4 bytes per pixel (rgb and alpha) or 3 (rgb - no alpha).
-- `bgColor` - an object containing red, green, and blue values between 0 and 255
-  that is used when packing a PNG if alpha is not to be included (default: 255,255,255)
+- `bgColor` - an object containing red, green, and blue values between 0 and 255.
+  that is used when packing a PNG if alpha is not to be included (default: 255,255,255).
 - `skipRescale` - set to true if you want to skip the rescaling to 8-bit bitmap. This is good if you wish to retain a 16-bit bitmap datastructure.
 - `initGrayscaleData` - if you want to initialize the grayscale conversion of the RGBA data for the `grayscaleData` call &dagger;.
 - `initPropData` - boolean or an object with the arguments to `initPropData` for initializing the `propData` &dagger;.
@@ -197,6 +198,10 @@ new PNG({ filterType: 4 }).parse(imageData, function (error, data) {
 Starts converting data to PNG file Stream.
 
 Returns `this` for method chaining.
+
+### png.destroy()
+
+Calling `destroy()` is entirely optional but browser memory management is both tricky and important, this is especially important here as images are take up a **lot** of space. The problem is also due to that the async procedures associated with the class can cause unwanted side-effects such memory leaks as we expect the object to have been deleted together with a DOM-node. The call tries to clear all the ArrayBuffers both own buffers and other sub-buffers that can be problematic.
 
 ### bitblt({ dst, srcX, srcY, width, height, deltaX, deltaY })
 
@@ -286,7 +291,7 @@ console.log(myRecreatedObject.storage === myPNG.storage, 'But the storage (i.e. 
 
 ### Immutability
 
-The storage in the PNG-object is immutable through `immer`. This means that any changes to the storage will propagate from subitem to the top item. This allows for efficient comparison `stora === prevStore`.
+The storage in the PNG-object is immutable through `immer`. This means that any changes to the storage will propagate from subitem to the top item. This allows for efficient comparison `store === prevStore`.
 
 ## Packing a PNG and removing alpha (RGBA to RGB)
 
@@ -354,6 +359,13 @@ adjustGamma(png);
 ```
 
 # Changelog
+
+### --> 6.1.0 - 30/10/2020
+
+- Added optional ID for easier tracking the object in memory
+- Added `destroy()` to PNG class. Browser memory management could potentially be problematic
+  as the async procedures associated with the class can cause unwanted side-effects such
+  memory leaks as we expect the object to have been deleted together with a DOM-node.
 
 ### --> 6.0.0 - 28/10/2020
 
