@@ -1,64 +1,66 @@
 import Stream, { Readable, Writable } from 'stream';
 
 export interface Metadata {
-  width: number,
-  height: number,
-  depth: 1 | 2 | 4 | 8 | 16,
-  interlace: boolean,
-  palette: boolean,
-  color: boolean,
-  alpha: boolean,
-  bpp: 1 | 2 | 3 | 4,
-  colorType: 0 | 2 | 3 | 4 | 6,
+  width: number;
+  height: number;
+  depth: 1 | 2 | 4 | 8 | 16;
+  interlace: boolean;
+  palette: boolean;
+  color: boolean;
+  alpha: boolean;
+  bpp: 1 | 2 | 3 | 4;
+  colorType: 0 | 2 | 3 | 4 | 6;
 }
 
 export interface PropDataInit {
-  shrinkMax?: boolean,
-  shrinkMin?: boolean,
+  shrinkMax?: boolean;
+  shrinkMin?: boolean;
 }
 
 export interface Props {
-  skipRescale?: boolean,
-  width?: number,
-  height?: number,
-  initGrayscaleData?: boolean,
-  initPropData?: PropDataInit,
-  fill?: boolean,
+  skipRescale?: boolean;
+  width?: number;
+  height?: number;
+  initGrayscaleData?: boolean;
+  initPropData?: PropDataInit;
+  fill?: boolean;
 }
 
 export interface Shape {
-  width: number,
-  height: number,
+  width: number;
+  height: number;
 }
 
 export interface Store {
-  data: Buffer | void,
-  shape: Shape,
-  gamma: number,
-  color: boolean | void,
-  depth: number | void,
-  grayscaleData: Uint8Array | Uint16Array | void,
-  propData: Float32Array | void,
+  pngId: string;
+  data: Buffer | void;
+  shape: Shape;
+  gamma: number;
+  color: boolean | void;
+  depth: number | void;
+  grayscaleData: Uint8Array | Uint16Array | void;
+  propData: Float32Array | void;
   config: {
     postParse: {
-      initGrayscaleData: boolean | void,
-      initPropData?: PropDataInit,
-    },
-  },
+      initGrayscaleData: boolean | void;
+      initPropData?: PropDataInit;
+    };
+  };
 }
 
 interface BasicBitBltProps {
-  srcX?: number | void,
-  srcY?: number | void,
-  width?: number | void,
-  height?: number | void,
-  deltaX?: number | void,
-  deltaY?: number | void,
+  srcX?: number | void;
+  srcY?: number | void;
+  width?: number | void;
+  height?: number | void;
+  deltaX?: number | void;
+  deltaY?: number | void;
 }
 
 export type BufferInput = ArrayBuffer | Readable;
 
 export interface Options {
+  id?: string;
   width?: number;
   height?: number;
   checkCRC?: boolean;
@@ -84,6 +86,7 @@ export declare class PNG extends Stream {
   height: number;
   shape: Store['shape'];
   data: Store['data'];
+  id: Store['pngId'];
   gamma: Store['gamma'];
   color: Store['color'];
   depth: Store['depth'];
@@ -103,6 +106,7 @@ export declare class PNG extends Stream {
     upperThreshold?: number,
     maxValue?: number,
   ): void;
+  destroy(): void;
 }
 
 export declare function adjustGamma(src: PNG): void;
