@@ -5,7 +5,7 @@
     "ecmaVersion": 8,
     "sourceType": "module"
   },
-  "extends": ["plugin:flowtype/recommended"],
+  "extends": ["plugin:flowtype/recommended",  "prettier"],
   "rules": {
     "no-alert": 2,
     "no-array-constructor": 0,
@@ -167,7 +167,6 @@
     "prefer-spread": 0,
     "prefer-reflect": 0,
     "quote-props": 0,
-    "quotes": [1, "single", { "avoidEscape": true }],
     "radix": 0,
     "id-match": 0,
     "require-yield": 0,
