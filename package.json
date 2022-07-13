@@ -70,34 +70,35 @@
     "url": "https://github.com/gforge/pngjs3/issues"
   },
   "devDependencies": {
-    "@babel/cli": "^7.12.1",
-    "@babel/core": "^7.12.3",
-    "@babel/node": "^7.12.1",
-    "@babel/plugin-proposal-class-properties": "^7.12.1",
-    "@babel/preset-env": "^7.12.1",
-    "@babel/preset-flow": "^7.12.1",
-    "@babel/register": "^7.12.1",
+    "@babel/cli": "^7.15.4",
+    "@babel/core": "^7.15.5",
+    "@babel/node": "^7.15.4",
+    "@babel/plugin-proposal-class-properties": "^7.14.5",
+    "@babel/preset-env": "^7.15.6",
+    "@babel/preset-flow": "^7.14.5",
+    "@babel/register": "^7.15.3",
     "babel-eslint": "^10.0.3",
     "babel-plugin-istanbul": "^6.0.0",
     "babel-tape-runner": "^3.0.0",
     "buffer-equal": "1.0.0",
-    "codecov": "3.8.0",
+    "codecov": "3.8.3",
     "connect": "^3.7.0",
-    "eslint": "^7.12.1",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-babel": "^5.3.1",
     "eslint-plugin-flowtype": "^5.2.0",
     "flow-bin": "^0.137.0",
     "flow-copy-source": "^2.0.8",
     "imagediff": "^1.0.8",
     "istanbul": "^0.4.4",
-    "nodemon": "^2.0.6",
+    "nodemon": "^2.0.12",
     "nyc": "^15.1.0",
-    "puppeteer": "5.4.1",
-    "rimraf": "^3.0.0",
-    "rollup": "^2.32.1",
+    "puppeteer": "10.2.0",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.56.3",
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-commonjs": "^10.1.0",
-    "rollup-plugin-filesize": "^9.0.2",
+    "rollup-plugin-filesize": "^9.1.1",
     "rollup-plugin-node-builtins": "^2.1.2",
     "rollup-plugin-node-globals": "^1.4.0",
     "rollup-plugin-sourcemaps": "^0.6.3",
@@ -105,7 +106,7 @@
     "serve-static": "^1.14.1",
     "tap-dot": "^2.0.0",
     "tap-nyc": "^1.0.3",
-    "tape": "^5.0.1"
+    "tape": "^5.3.1"
   },
   "nyc": {
     "require": [
@@ -116,6 +117,6 @@
   },
   "dependencies": {
     "browserify-zlib": "^0.2.0",
-    "immer": "^7.0.14"
+    "immer": "^9.0.6"
   }
 }
