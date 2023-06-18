@@ -360,6 +360,12 @@ adjustGamma(png);
 
 # Changelog
 
+### --> 6.1.1 - 19/06/2023
+
+- Update package dependencies
+- Fixed bad es6 reference
+- Node support updated to 18 (but no changes in code that should break older versions)
+
 ### --> 6.1.0 - 30/10/2020
 
 - Added optional ID for easier tracking the object in memory
