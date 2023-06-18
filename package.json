@@ -31,7 +31,7 @@
     "pngjs"
   ],
   "engines": {
-    "node": ">=10.0.0"
+    "node": ">=18.0.0"
   },
   "main": "./dist/pngjs3.js",
   "module": "./dist/pngjs3.es6.js",
@@ -46,7 +46,6 @@
     "build:flow": "flow-copy-source -v -i 'test/**' lib dist",
     "build:typescript": "cp lib/index.d.ts dist/index.d.ts",
     "build:clean": "rimraf dist",
-    "prepublish": "npm run build",
     "compile": "NODE_ENV=production rollup -c && NODE_ENV=development rollup -c",
     "coverage": "NODE_ENV=test nyc --reporter=lcov --reporter=text-summary babel-tape-runner test/*-spec.js nolarge",
     "monitor": "nodemon --watch lib --delay 2.5s --exec \"npm run build\"",
@@ -70,43 +69,44 @@
     "url": "https://github.com/gforge/pngjs3/issues"
   },
   "devDependencies": {
-    "@babel/cli": "^7.15.4",
-    "@babel/core": "^7.15.5",
-    "@babel/node": "^7.15.4",
-    "@babel/plugin-proposal-class-properties": "^7.14.5",
-    "@babel/preset-env": "^7.15.6",
-    "@babel/preset-flow": "^7.14.5",
-    "@babel/register": "^7.15.3",
-    "babel-eslint": "^10.0.3",
-    "babel-plugin-istanbul": "^6.0.0",
+    "@babel/cli": "^7.22.5",
+    "@babel/core": "^7.22.5",
+    "@babel/eslint-parser": "^7.22.5",
+    "@babel/node": "^7.22.5",
+    "@babel/plugin-proposal-class-properties": "^7.18.6",
+    "@babel/plugin-syntax-flow": "^7.22.5",
+    "@babel/plugin-transform-react-jsx": "^7.22.5",
+    "@babel/preset-env": "^7.22.5",
+    "@babel/preset-flow": "^7.22.5",
+    "@babel/register": "^7.22.5",
+    "@rollup/plugin-babel": "^6.0.3",
+    "@rollup/plugin-terser": "^0.4.3",
+    "babel-eslint": "^10.1.0",
+    "babel-plugin-istanbul": "^6.1.1",
     "babel-tape-runner": "^3.0.0",
-    "buffer-equal": "1.0.0",
+    "buffer-equal": "1.0.1",
     "codecov": "3.8.3",
     "connect": "^3.7.0",
-    "eslint": "^7.32.0",
-    "eslint-config-prettier": "^8.3.0",
+    "eslint": "^8.43.0",
+    "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-babel": "^5.3.1",
-    "eslint-plugin-flowtype": "^5.2.0",
-    "flow-bin": "^0.137.0",
-    "flow-copy-source": "^2.0.8",
+    "eslint-plugin-flowtype": "^8.0.3",
+    "flow-bin": "^0.209.0",
+    "flow-copy-source": "^2.0.9",
     "imagediff": "^1.0.8",
-    "istanbul": "^0.4.4",
-    "nodemon": "^2.0.12",
+    "istanbul": "^0.4.5",
+    "nodemon": "^2.0.22",
     "nyc": "^15.1.0",
-    "puppeteer": "10.2.0",
-    "rimraf": "^3.0.2",
-    "rollup": "^2.56.3",
-    "rollup-plugin-babel": "^4.3.3",
+    "puppeteer": "20.7.2",
+    "rimraf": "^5.0.1",
+    "rollup": "^3.25.1",
     "rollup-plugin-commonjs": "^10.1.0",
-    "rollup-plugin-filesize": "^9.1.1",
     "rollup-plugin-node-builtins": "^2.1.2",
     "rollup-plugin-node-globals": "^1.4.0",
-    "rollup-plugin-sourcemaps": "^0.6.3",
-    "rollup-plugin-terser": "^7.0.2",
-    "serve-static": "^1.14.1",
+    "serve-static": "^1.15.0",
     "tap-dot": "^2.0.0",
     "tap-nyc": "^1.0.3",
-    "tape": "^5.3.1"
+    "tape": "^5.6.3"
   },
   "nyc": {
     "require": [
@@ -117,6 +117,7 @@
   },
   "dependencies": {
     "browserify-zlib": "^0.2.0",
-    "immer": "^9.0.6"
-  }
+    "immer": "^10.0.2"
+  },
+  "packageManager": "yarn@3.6.0"
 }

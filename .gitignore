@@ -9,3 +9,11 @@ yarn.lock
 flow-typed/npm
 test/imgs/out_*
 browser
+
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions

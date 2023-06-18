@@ -1,8 +1,6 @@
-import rollupBabel from 'rollup-plugin-babel';
+import rollupBabel from '@rollup/plugin-babel';
 import commonjs from 'rollup-plugin-commonjs';
-import filesize from 'rollup-plugin-filesize';
-import { terser } from 'rollup-plugin-terser';
-import sourceMaps from 'rollup-plugin-sourcemaps';
+import terser from '@rollup/plugin-terser';
 import nodeResolver from 'rollup-plugin-node-builtins';
 import nodeGlobals from 'rollup-plugin-node-globals';
 
@@ -64,7 +62,6 @@ export default [
     },
     plugins: [
       ...sharedPlugins,
-      production && filesize(),
       production &&
         terser({
           output: { comments: false },
@@ -92,6 +89,6 @@ export default [
         ...sharedModuleOutput,
       },
     ],
-    plugins: [...sharedPlugins, sourceMaps(), production && filesize()],
+    plugins: [...sharedPlugins],
   },
 ];

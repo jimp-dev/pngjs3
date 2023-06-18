@@ -4,7 +4,7 @@ const URL = 'http://localhost:8000';
 
 puppeteer
   .launch({
-    headless: true,
+    headless: 'new',
     args: ['--no-sandbox', '--disable-setuid-sandbox'],
   })
   .then(async (browser) => {
