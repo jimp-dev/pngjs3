@@ -34,7 +34,7 @@
     "node": ">=10.0.0"
   },
   "main": "./dist/pngjs3.js",
-  "module": "./dist/pngjs3.es.js",
+  "module": "./dist/pngjs3.es6.js",
   "types": "./dist/index.d.ts",
   "directories": {
     "lib": "dist",
